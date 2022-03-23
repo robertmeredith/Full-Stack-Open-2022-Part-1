@@ -22,11 +22,14 @@ const App = () => {
 
   const [selected, setSelected] = useState(0)
   const [points, setPoints] = useState(new Array(anecdotes.length).fill(0))
+  
+  // hasVoted state to prevent most popular anecdote from showing until first vote is cast
   const [hasVoted, setHasVoted] = useState(false)
 
   const mostPopular = points.indexOf(Math.max(...points))
 
   const handleClick = () => {
+    // prevent same anecdote appearing twice by randomising until index is different than current
     let index = selected
     while (index === selected) {
       index = randomIndex()
